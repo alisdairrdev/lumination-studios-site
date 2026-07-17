@@ -10,14 +10,15 @@ Find them: `grep -rn "TODO" index.html`
 
 ### Fever Dream — `#work`
 
+Key art and the store page link are in. Still open:
+
 | Slot | What it needs |
 |---|---|
-| `TODO — key art` | 16:9 image → `assets/fever-dream-key-art.png`, then replace the `slot--media` div with `<img src="assets/fever-dream-key-art.png" alt="…" width="1920" height="1080" loading="lazy" />` |
-| `TODO — what is Fever Dream?` | 2–4 sentences. What it is, what you do, the hook. Only game on the site, so this carries it. |
+| description | 2–4 sentences on what Fever Dream is, what you do, the hook. Only game on the site, so this carries it. There's no on-page dashed box for this one anymore — it was pulled off the page rather than left as clutter, so it lives here until it's written. |
 | Platform | Quest / PCVR / Steam? |
 | Status | Released / early access / in development? |
 | Players | Single / co-op / multiplayer? |
-| Store page, Trailer | Real URLs. Drop `class="is-disabled"` and `aria-disabled` once they exist. |
+| Trailer | Real URL. Drop `class="is-disabled"`, `aria-disabled`, and `tabindex="-1"` once it exists. |
 
 ### Studio — `#studio`
 
