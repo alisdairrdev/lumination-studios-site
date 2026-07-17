@@ -43,10 +43,24 @@ npx serve .            # needs Node, which isn't installed on this machine
 
 The logo is white-on-transparent, so the site is dark by necessity as much as by choice.
 
-**Signature interactions** — both are progressive enhancement, and both switch off for
-`prefers-reduced-motion` and on touch devices:
-- A soft amber light trails your cursor through the dark.
-- The pupils in the infinity-eye motif follow your cursor.
+## Motion policy
+
+**There are no scroll-triggered reveals, on purpose.** Fading every block up on scroll is
+the loudest tell of a machine-built page, and it makes a short site feel padded. Motion is
+spent in one place — the hero waking up — and then on the eyes that keep watching.
+
+The whole system is one idea: *an eye opening and focusing.*
+
+- On load the hero resolves **out of blur**, rather than sliding up from nowhere.
+- The halo **drifts** over 19s. It doesn't pulse; a throb reads as a loading spinner.
+- The pupils **track your cursor**, and the eyes **blink** on a randomised interval with
+  an occasional double-blink. A fixed CSS blink loop looks like a metronome.
+- A soft amber light **trails your cursor** through the dark.
+- Buttons **light up** on hover — no `translateY` lift.
+
+All of it is progressive enhancement, and all of it switches off for
+`prefers-reduced-motion` and on touch devices. If you're tempted to animate a section in
+on scroll: don't.
 
 ## Accessibility
 

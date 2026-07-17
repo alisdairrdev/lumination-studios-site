@@ -1,7 +1,12 @@
 /* ══════════════════════════════════════════════════════════
    Lumination Studios VR — interaction layer
-   Everything here is progressive enhancement: with JS off the
-   page is still fully readable and navigable.
+
+   Everything here is progressive enhancement. With JS off the
+   page is fully readable, fully navigable, and simply doesn't
+   animate. Nothing is hidden behind a script.
+
+   There is no scroll-reveal code here and there shouldn't be.
+   See the motion policy at the top of style.css.
    ══════════════════════════════════════════════════════════ */
 
 (() => {
@@ -15,34 +20,11 @@
     el.textContent = String(new Date().getFullYear());
   });
 
-  /* ── reveal on scroll ──────────────────────────────────
-     Staggered within each section so a scroll lands as one
-     orchestrated beat rather than N independent twitches. */
-  const targets = document.querySelectorAll("[data-reveal]");
-
-  if (reduced || !("IntersectionObserver" in window)) {
-    targets.forEach(el => el.classList.add("is-in"));
-  } else {
-    const io = new IntersectionObserver((entries, obs) => {
-      // stagger only among the entries appearing in this same frame
-      entries
-        .filter(e => e.isIntersecting)
-        .forEach((e, i) => {
-          e.target.style.setProperty("--d", `${Math.min(i, 5) * 90}ms`);
-          e.target.classList.add("is-in");
-          obs.unobserve(e.target);
-        });
-    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-
-    targets.forEach(el => io.observe(el));
-  }
-
-  /* ── the lumination: a light that trails the cursor ────
-     Skipped entirely on touch and for reduced-motion users. */
+  /* ── the lumination: a light that trails the cursor ──── */
   if (finePointer && !reduced) {
     const lumen = document.querySelector(".lumen");
     if (lumen) {
-      let raf = 0, x = innerWidth / 2, y = innerHeight / 2;
+      let raf = 0, x = 0, y = 0;
 
       addEventListener("pointermove", e => {
         x = e.clientX; y = e.clientY;
@@ -59,33 +41,28 @@
     }
   }
 
-  /* ── the eyes follow you ───────────────────────────────
-     The pupils track the cursor, clamped inside the iris so
-     they never escape the eye. This is the one thing people
-     remember, so it has to feel alive but never silly. */
   const eyes = [...document.querySelectorAll("[data-eye]")];
 
+  /* ── the eyes follow you ───────────────────────────────
+     Pupils track the cursor, clamped inside the iris so they
+     never escape the eye. This is the one thing people
+     remember, so it has to feel alive but never silly. */
   if (eyes.length && finePointer && !reduced) {
-    const MAX = 5;           // px of travel inside the iris (SVG units)
+    const svg = document.querySelector(".iris");
+    const MAX = 5;              // travel inside the iris, in SVG units
     let raf = 0;
 
     const track = (cx, cy) => {
-      const svg = document.querySelector(".iris");
-      if (!svg) return;
       const box = svg.getBoundingClientRect();
       if (!box.width) return;
 
-      // map viewport px -> the svg's 400x200 user space
-      const sx = 400 / box.width;
-      const sy = 200 / box.height;
-      const px = (cx - box.left) * sx;
-      const py = (cy - box.top) * sy;
+      // viewport px -> the svg's 400x200 user space
+      const px = (cx - box.left) * (400 / box.width);
+      const py = (cy - box.top) * (200 / box.height);
 
       eyes.forEach(eye => {
-        const ex = Number(eye.dataset.cx);
-        const ey = Number(eye.dataset.cy);
-        const dx = px - ex;
-        const dy = py - ey;
+        const dx = px - Number(eye.dataset.cx);
+        const dy = py - Number(eye.dataset.cy);
         const dist = Math.hypot(dx, dy) || 1;
         const reach = Math.min(dist / 45, 1) * MAX;   // ease in as you approach
         const pupil = eye.querySelector("[data-pupil]");
@@ -103,14 +80,39 @@
     }, { passive: true });
   }
 
+  /* ── and they blink ────────────────────────────────────
+     Randomised interval, with an occasional double-blink. A
+     fixed CSS loop blinks like a metronome, which reads worse
+     than not blinking at all. */
+  if (eyes.length && !reduced) {
+    const shut = () => {
+      eyes.forEach(e => e.classList.add("is-blink"));
+      setTimeout(() => eyes.forEach(e => e.classList.remove("is-blink")), 105);
+    };
+
+    const schedule = () => {
+      setTimeout(() => {
+        shut();
+        if (Math.random() < 0.18) setTimeout(shut, 260);   // occasional double
+        schedule();
+      }, 2800 + Math.random() * 6500);
+    };
+
+    // don't blink at a tab nobody's looking at
+    let started = false;
+    const begin = () => { if (!started && !document.hidden) { started = true; schedule(); } };
+    document.addEventListener("visibilitychange", begin);
+    setTimeout(begin, 1800);
+  }
+
   /* ── dev guard ─────────────────────────────────────────
-     Shout in the console while placeholders are still in the
-     page, so this never ships half-written by accident. */
+     Shout while placeholders remain, so this never ships
+     half-written by accident. */
   const todos = document.querySelectorAll(".slot").length;
   if (todos) {
     console.warn(
       `%c LUMINATION %c ${todos} unfilled placeholder${todos === 1 ? "" : "s"} still in this page. ` +
-      `Search the repo for "TODO" and "CONFIRM" before publishing. See PLACEHOLDERS.md.`,
+      `Search the repo for "TODO" before publishing. See PLACEHOLDERS.md.`,
       "background:#f2a73b;color:#08080b;font-weight:700;padding:2px 6px;border-radius:2px",
       "color:#f2a73b"
     );
