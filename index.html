@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lumination Studios VR — Developers of Fever Dream</title>
+
+<!-- TODO(CONTENT): rewrite description once studio copy is finalised. -->
+<meta name="description" content="Lumination Studios VR — a virtual reality game studio. Developers of Fever Dream." />
+<meta name="theme-color" content="#08080b" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Lumination Studios VR" />
+<meta property="og:description" content="A virtual reality game studio. Developers of Fever Dream." />
+<meta property="og:image" content="assets/logo-lumination.png" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" href="assets/logo-lumination.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- luminous field that follows the cursor -->
+<div class="lumen" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="nav">
+  <a class="nav__brand" href="#" aria-label="Lumination Studios VR — home">
+    <img src="assets/logo-lumination.png" alt="" width="644" height="644" />
+    <span>Lumination<em>Studios</em></span>
+  </a>
+  <nav aria-label="Primary">
+    <ul class="nav__links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#studio">Studio</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ═══════════════════════ HERO ═══════════════════════ -->
+  <section class="hero">
+    <div class="hero__mark" data-reveal>
+      <img class="hero__logo" src="assets/logo-lumination.png"
+           alt="Lumination Studios VR logo: an infinity symbol formed of two eyes."
+           width="644" height="644" />
+    </div>
+
+    <div class="hero__copy">
+      <p class="eyebrow" data-reveal>Virtual reality game studio</p>
+
+      <h1 class="hero__title" data-reveal>
+        We build worlds<br />
+        that <em>watch back</em>.
+        <!-- TODO(COPY): headline is a placeholder written to the eye/infinity mark.
+             Replace with the studio's real positioning line. -->
+      </h1>
+
+      <p class="hero__lede" data-reveal>
+        Developers of <strong>Fever Dream</strong>.
+      </p>
+
+      <div class="slot slot--inline" data-reveal>
+        <span class="slot__chip">TODO — studio one-liner</span>
+        <p>One or two sentences: what Lumination Studios makes, for whom, and what
+           makes it different. This is the first thing a publisher or player reads.</p>
+      </div>
+
+      <div class="hero__cta" data-reveal>
+        <a class="btn btn--primary" href="#work">See our work</a>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+    </div>
+
+    <!-- signature: infinity-eye motif, pupils track the cursor -->
+    <svg class="iris" viewBox="0 0 400 200" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="ribbon" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0"   stop-color="var(--cold)"  stop-opacity=".55" />
+          <stop offset=".5"  stop-color="var(--amber)" stop-opacity=".95" />
+          <stop offset="1"   stop-color="var(--cold)"  stop-opacity=".55" />
+        </linearGradient>
+      </defs>
+      <path class="iris__ribbon"
+            d="M200,100 C180,55 145,40 115,55 C78,73 78,127 115,145 C145,160 180,145 200,100
+               C220,55 255,40 285,55 C322,73 322,127 285,145 C255,160 220,145 200,100 Z"
+            fill="none" stroke="url(#ribbon)" stroke-width="9" stroke-linecap="round" />
+      <g class="iris__eye" data-eye data-cx="115" data-cy="100">
+        <path d="M85,100 Q115,74 145,100 Q115,126 85,100 Z" class="iris__lid" />
+        <circle cx="115" cy="100" r="12" class="iris__iris" />
+        <circle cx="115" cy="100" r="5.5" class="iris__pupil" data-pupil />
+      </g>
+      <g class="iris__eye" data-eye data-cx="285" data-cy="100">
+        <path d="M255,100 Q285,74 315,100 Q285,126 255,100 Z" class="iris__lid" />
+        <circle cx="285" cy="100" r="12" class="iris__iris" />
+        <circle cx="285" cy="100" r="5.5" class="iris__pupil" data-pupil />
+      </g>
+    </svg>
+
+    <p class="hero__scroll" aria-hidden="true">scroll</p>
+  </section>
+
+  <!-- ═══════════════════════ WORK ═══════════════════════ -->
+  <section class="section" id="work">
+    <div class="section__head">
+      <p class="eyebrow" data-reveal>01 — Work</p>
+      <h2 class="section__title" data-reveal>Things we've <em>made</em>.</h2>
+    </div>
+
+    <!-- ── FEVER DREAM ── -->
+    <article class="game" data-reveal>
+      <div class="game__media">
+        <div class="slot slot--media">
+          <span class="slot__chip">TODO — Fever Dream key art</span>
+          <p>Drop a 16:9 image at <code>assets/fever-dream-key-art.png</code>
+             and swap this block for an <code>&lt;img&gt;</code>.</p>
+        </div>
+      </div>
+
+      <div class="game__body">
+        <p class="eyebrow">Lumination Studios</p>
+        <h3 class="game__title">Fever Dream</h3>
+
+        <div class="slot">
+          <span class="slot__chip">TODO — Fever Dream description</span>
+          <p>What is it, what do you do in it, what's the hook? 2–4 sentences.</p>
+        </div>
+
+        <dl class="meta">
+          <div><dt>Platform</dt><dd class="is-todo">TODO — Quest / PCVR / Steam?</dd></div>
+          <div><dt>Status</dt><dd class="is-todo">TODO — released / in development?</dd></div>
+          <div><dt>Players</dt><dd class="is-todo">TODO — single / multiplayer?</dd></div>
+        </dl>
+
+        <div class="game__links">
+          <!-- TODO(LINKS): real store URLs. Links are disabled until then. -->
+          <a class="btn btn--primary is-disabled" aria-disabled="true" href="#">TODO — Store page</a>
+          <a class="btn is-disabled" aria-disabled="true" href="#">TODO — Trailer</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ── BRICK MANIA ── -->
+    <article class="game game--flip" data-reveal>
+      <div class="game__media">
+        <img src="assets/brick-mania-key-art.png"
+             alt="Brick Mania key art: brightly coloured blocky gorillas in a world built from toy bricks."
+             width="1024" height="1024" loading="lazy" />
+      </div>
+
+      <div class="game__body">
+        <p class="eyebrow">Lumination Studios</p>
+        <h3 class="game__title">Brick Mania</h3>
+
+        <div class="slot slot--warn">
+          <span class="slot__chip slot__chip--warn">CONFIRM — is this a Lumination title?</span>
+          <p>I pulled this key art from the Unity project at
+             <code>C:\Users\User\Brick&nbsp;Mania\Assets</code>. It's clearly yours to work on,
+             but you never told me it's a Lumination Studios release — so confirm before this
+             goes public, and delete this whole <code>&lt;article&gt;</code> if it shouldn't be here.</p>
+        </div>
+
+        <div class="slot">
+          <span class="slot__chip">TODO — Brick Mania description</span>
+          <p>What is it, what do you do in it, what's the hook? 2–4 sentences.</p>
+        </div>
+
+        <dl class="meta">
+          <div><dt>Platform</dt><dd class="is-todo">TODO</dd></div>
+          <div><dt>Status</dt><dd class="is-todo">TODO</dd></div>
+          <div><dt>Players</dt><dd class="is-todo">TODO</dd></div>
+        </dl>
+
+        <div class="game__links">
+          <a class="btn btn--primary is-disabled" aria-disabled="true" href="#">TODO — Store page</a>
+          <a class="btn is-disabled" aria-disabled="true" href="#">TODO — Trailer</a>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ═══════════════════════ STUDIO ═══════════════════════ -->
+  <section class="section section--studio" id="studio">
+    <div class="section__head">
+      <p class="eyebrow" data-reveal>02 — Studio</p>
+      <h2 class="section__title" data-reveal>Who we <em>are</em>.</h2>
+    </div>
+
+    <div class="studio">
+      <div class="studio__lede" data-reveal>
+        <div class="slot">
+          <span class="slot__chip">TODO — studio story</span>
+          <p>Who founded it and when, where you're based, how big the team is, what you
+             care about. Publishers read this bit closely. 1–2 short paragraphs.</p>
+        </div>
+      </div>
+
+      <ul class="caps" data-reveal>
+        <li>
+          <h3>Multiplayer VR</h3>
+          <div class="slot slot--tight">
+            <span class="slot__chip">CONFIRM</span>
+            <p>Your Unity project uses <strong>Photon</strong> — inferred, not stated. Confirm or cut.</p>
+          </div>
+        </li>
+        <li>
+          <h3>Live backend</h3>
+          <div class="slot slot--tight">
+            <span class="slot__chip">CONFIRM</span>
+            <p>Your Unity project uses <strong>PlayFab</strong> — inferred, not stated. Confirm or cut.</p>
+          </div>
+        </li>
+        <li>
+          <h3>Standalone headsets</h3>
+          <div class="slot slot--tight">
+            <span class="slot__chip">CONFIRM</span>
+            <p>Your Unity project uses the <strong>Oculus / XR</strong> SDKs — inferred, not stated. Confirm or cut.</p>
+          </div>
+        </li>
+        <li>
+          <h3 class="is-todo">TODO — fourth capability</h3>
+          <div class="slot slot--tight">
+            <span class="slot__chip">TODO</span>
+            <p>Art, audio, performance engineering — whatever you actually want to be known for.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ CONTACT ═══════════════════════ -->
+  <section class="section section--contact" id="contact">
+    <div class="contact">
+      <p class="eyebrow" data-reveal>03 — Contact</p>
+      <h2 class="contact__title" data-reveal>Let's build something<br />that <em>lingers</em>.</h2>
+
+      <div class="slot slot--inline" data-reveal>
+        <span class="slot__chip">TODO — contact details</span>
+        <p>Business email, press email, Discord invite, X / YouTube / TikTok.
+           Add each as a link below and delete this block.</p>
+      </div>
+
+      <ul class="contact__links" data-reveal>
+        <li><a class="is-disabled" aria-disabled="true" href="#">TODO — Email</a></li>
+        <li><a class="is-disabled" aria-disabled="true" href="#">TODO — Discord</a></li>
+        <li><a class="is-disabled" aria-disabled="true" href="#">TODO — X</a></li>
+        <li><a class="is-disabled" aria-disabled="true" href="#">TODO — YouTube</a></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <img src="assets/logo-lumination.png" alt="" width="644" height="644" />
+  <p>&copy; <span data-year>2026</span> Lumination Studios VR. All rights reserved.</p>
+  <p class="foot__note">Built as a static site. No trackers, no cookies.</p>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>

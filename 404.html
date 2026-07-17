@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lost — Lumination Studios VR</title>
+<meta name="robots" content="noindex" />
+<link rel="icon" href="assets/logo-lumination.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+<style>
+  .lost {
+    min-height: 100vh;
+    display: grid; place-content: center; justify-items: center;
+    text-align: center; gap: 1.25rem;
+    padding: var(--gut);
+    position: relative; z-index: 2;
+  }
+  .lost img { width: 130px; height: 130px; opacity: .9; filter: drop-shadow(0 0 40px rgba(242,167,59,.3)); }
+  .lost h1 { font-size: clamp(3rem, 12vw, 7rem); }
+  .lost p  { color: var(--bone-dim); max-width: 40ch; }
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<main class="lost">
+  <img src="assets/logo-lumination.png" alt="Lumination Studios VR" width="644" height="644" />
+  <p class="eyebrow">Error 404</p>
+  <h1>Nothing <em>here</em>.</h1>
+  <p>This page doesn't exist — or it dissolved on waking.</p>
+  <a class="btn btn--primary" href="/">Back to the studio</a>
+</main>
+</body>
+</html>

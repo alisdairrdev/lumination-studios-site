@@ -1,0 +1,496 @@
+/* ══════════════════════════════════════════════════════════════
+   LUMINATION STUDIOS VR
+   Aesthetic: sodium-lit void. Near-black, amber lumination,
+   glacial counter-accent, film grain, light that follows you.
+   ══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── colour ── */
+  --void:      #08080b;
+  --void-2:    #0d0d12;
+  --void-3:    #14141b;
+  --bone:      #f4f1ea;
+  --bone-dim:  #a8a49c;
+  --bone-mute: #6f6c66;
+
+  --amber:     #f2a73b;   /* the lumination */
+  --amber-hot: #ff7a1a;
+  --cold:      #8fc7dd;   /* glacial counter-accent, used sparingly */
+  --warn:      #ff5f56;
+
+  --line:      rgba(244, 241, 234, .10);
+  --line-2:    rgba(244, 241, 234, .18);
+
+  /* ── type ── */
+  --display: "Instrument Serif", ui-serif, Georgia, serif;
+  --body:    "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --mono:    "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* ── space ── */
+  --gut: clamp(1.25rem, 4vw, 3.5rem);
+  --max: 1240px;
+
+  --ease: cubic-bezier(.2, .7, .3, 1);
+}
+
+/* ── reset ── */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; }
+html:focus-within { scroll-behavior: smooth; }
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; }
+
+body {
+  background: var(--void);
+  color: var(--bone);
+  font-family: var(--body);
+  font-size: clamp(1rem, .95rem + .2vw, 1.075rem);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+  /* faint sodium bloom anchored top-centre, so the page never reads as flat black */
+  background-image:
+    radial-gradient(120vw 70vh at 50% -20%, rgba(242, 167, 59, .09), transparent 65%),
+    radial-gradient(80vw 60vh at 85% 110%, rgba(143, 199, 221, .05), transparent 60%);
+  background-attachment: fixed;
+}
+
+::selection { background: var(--amber); color: var(--void); }
+
+.skip {
+  position: fixed; top: -100px; left: 1rem; z-index: 100;
+  background: var(--amber); color: var(--void);
+  padding: .7rem 1.1rem; border-radius: 2px;
+  font: 500 .85rem/1 var(--mono); text-decoration: none;
+  transition: top .2s var(--ease);
+}
+.skip:focus { top: 1rem; }
+
+:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ══════════════ atmosphere ══════════════ */
+
+/* the "lumination" — a soft light that trails the cursor */
+.lumen {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(
+    260px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(242, 167, 59, .10), rgba(242, 167, 59, .04) 40%, transparent 70%);
+  opacity: 0;
+  transition: opacity .6s var(--ease);
+}
+.lumen.is-live { opacity: 1; }
+
+/* film grain — keeps the blacks from banding */
+.grain {
+  position: fixed; inset: -50%; z-index: 1; pointer-events: none;
+  opacity: .035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 6s steps(4) infinite;
+  will-change: transform;
+}
+@keyframes grain {
+  0%,100% { transform: translate(0,0); }
+  25%     { transform: translate(-2%, 1%); }
+  50%     { transform: translate(1%, -2%); }
+  75%     { transform: translate(2%, 2%); }
+}
+
+main, .nav, .foot { position: relative; z-index: 2; }
+
+/* ══════════════ type primitives ══════════════ */
+
+.eyebrow {
+  font: 500 .72rem/1 var(--mono);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 1.4rem;
+}
+
+h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: .98; letter-spacing: -.015em; }
+h1 em, h2 em, h3 em { font-style: italic; color: var(--amber); }
+
+/* ══════════════ nav ══════════════ */
+
+.nav {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1rem var(--gut);
+  background: color-mix(in srgb, var(--void) 72%, transparent);
+  backdrop-filter: blur(14px) saturate(1.2);
+  border-bottom: 1px solid var(--line);
+}
+.nav__brand {
+  display: flex; align-items: center; gap: .7rem;
+  text-decoration: none;
+  font: 400 1.15rem/1 var(--display);
+  letter-spacing: .01em;
+}
+.nav__brand img { width: 34px; height: 34px; opacity: .95; }
+.nav__brand em { font-style: italic; color: var(--bone-dim); margin-left: .3em; }
+
+.nav__links { display: flex; gap: 1.75rem; list-style: none; padding: 0; }
+.nav__links a {
+  font: 500 .78rem/1 var(--mono);
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--bone-dim); text-decoration: none;
+  position: relative; padding: .4rem 0;
+  transition: color .25s var(--ease);
+}
+.nav__links a::after {
+  content: ""; position: absolute; left: 0; bottom: 0;
+  width: 100%; height: 1px; background: var(--amber);
+  transform: scaleX(0); transform-origin: right;
+  transition: transform .35s var(--ease);
+}
+.nav__links a:hover { color: var(--bone); }
+.nav__links a:hover::after { transform: scaleX(1); transform-origin: left; }
+
+@media (max-width: 640px) {
+  .nav__links { gap: 1rem; }
+  .nav__brand span { display: none; }
+}
+
+/* ══════════════ hero ══════════════ */
+
+.hero {
+  position: relative;
+  min-height: min(92vh, 900px);
+  max-width: var(--max);
+  margin-inline: auto;
+  padding: clamp(3rem, 9vh, 7rem) var(--gut) 5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, .85fr);
+  grid-template-rows: auto auto;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+/* every child is placed explicitly — auto-placement here silently
+   pushes the copy into row 2 and opens a dead void top-left. */
+.hero__copy {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  align-self: center;
+  max-width: 34ch;
+}
+
+.hero__title {
+  font-size: clamp(3rem, 8.5vw, 6.5rem);
+  margin-bottom: 1.5rem;
+}
+
+.hero__lede {
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  color: var(--bone-dim);
+  margin-bottom: 1.75rem;
+}
+.hero__lede strong {
+  color: var(--bone);
+  font-weight: 500;
+  /* underline the one fact we actually know */
+  box-shadow: inset 0 -.35em 0 rgba(242, 167, 59, .22);
+}
+
+/* the mark: breathing sodium halo behind a white logo */
+.hero__mark {
+  grid-column: 2; grid-row: 1;
+  align-self: end;
+  position: relative;
+  display: grid; place-items: center;
+  isolation: isolate;
+}
+.hero__mark::before {
+  content: ""; position: absolute; z-index: -1;
+  width: 78%; aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle, rgba(242,167,59,.30), rgba(255,122,26,.10) 45%, transparent 70%);
+  filter: blur(28px);
+  animation: breathe 7s var(--ease) infinite;
+}
+@keyframes breathe {
+  0%,100% { transform: scale(1);    opacity: .75; }
+  50%     { transform: scale(1.14); opacity: 1;   }
+}
+.hero__logo {
+  width: min(100%, 420px);
+  height: auto;
+  filter: drop-shadow(0 0 34px rgba(242, 167, 59, .28));
+}
+
+.hero__cta { display: flex; flex-wrap: wrap; gap: .75rem; }
+
+/* signature motif */
+/* sits directly under the mark, so the right column reads as one
+   object: the logo, and the living echo of it beneath. */
+.iris {
+  grid-column: 2; grid-row: 2;
+  justify-self: center;
+  align-self: start;
+  width: min(290px, 85%);
+  height: auto;
+  opacity: .9;
+}
+.iris__lid  { fill: none; stroke: var(--bone); stroke-width: 2.5; opacity: .5; }
+.iris__iris { fill: rgba(242, 167, 59, .16); stroke: var(--amber); stroke-width: 1.5; }
+.iris__pupil{ fill: var(--bone); transition: transform .12s var(--ease); }
+
+.hero__scroll {
+  position: absolute; bottom: 1.25rem; left: var(--gut);
+  font: 400 .68rem/1 var(--mono);
+  letter-spacing: .3em; text-transform: uppercase;
+  color: var(--bone-mute);
+}
+.hero__scroll::after {
+  content: ""; display: inline-block; vertical-align: middle;
+  width: 46px; height: 1px; margin-left: .8rem;
+  background: linear-gradient(90deg, var(--bone-mute), transparent);
+  animation: drift 2.4s var(--ease) infinite;
+}
+@keyframes drift { 0%,100% { transform: translateX(0); opacity: .4; } 50% { transform: translateX(8px); opacity: 1; } }
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    min-height: auto;
+    padding-top: 2rem;
+    text-align: left;
+  }
+  .hero__mark { grid-column: 1; grid-row: 1; align-self: center; }
+  .hero__copy { grid-column: 1; grid-row: 2; max-width: none; }
+  .iris       { grid-column: 1; grid-row: 3; justify-self: start; width: min(240px, 70%); }
+  .hero__logo { width: min(100%, 300px); }
+  .hero__scroll { display: none; }
+}
+
+/* ══════════════ buttons ══════════════ */
+
+.btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .8rem 1.4rem;
+  border: 1px solid var(--line-2);
+  border-radius: 2px;
+  font: 500 .78rem/1 var(--mono);
+  letter-spacing: .1em; text-transform: uppercase;
+  text-decoration: none; color: var(--bone);
+  background: transparent;
+  transition: background .25s var(--ease), border-color .25s var(--ease),
+              color .25s var(--ease), transform .25s var(--ease);
+}
+.btn:hover { border-color: var(--amber); color: var(--amber); transform: translateY(-2px); }
+
+.btn--primary {
+  background: var(--amber); color: var(--void);
+  border-color: var(--amber); font-weight: 500;
+}
+.btn--primary:hover {
+  background: var(--amber-hot); border-color: var(--amber-hot); color: var(--void);
+}
+
+/* a link with no destination yet must not pretend to be one.
+   NOTE: don't put `border-style` here — on elements with no border
+   declared it resolves against the default `medium` width and paints
+   a 3px currentColor border out of nowhere. Scope it to .btn. */
+.is-disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  pointer-events: none;
+  text-decoration: none;
+}
+.btn.is-disabled { border-style: dashed; }
+
+/* ══════════════ sections ══════════════ */
+
+.section {
+  max-width: var(--max);
+  margin-inline: auto;
+  padding: clamp(4rem, 12vh, 8rem) var(--gut);
+  border-top: 1px solid var(--line);
+}
+.section__head { margin-bottom: clamp(2.5rem, 6vh, 4.5rem); }
+.section__title { font-size: clamp(2.25rem, 5.5vw, 4rem); }
+
+/* ══════════════ games ══════════════ */
+
+.game {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(1.75rem, 4vw, 3.5rem);
+  align-items: center;
+  padding: clamp(2rem, 5vh, 3.5rem) 0;
+}
+.game + .game { border-top: 1px solid var(--line); }
+.game--flip .game__media { order: 2; }
+
+.game__media img {
+  width: 100%; height: auto;
+  border: 1px solid var(--line-2);
+  border-radius: 3px;
+  filter: saturate(.92) contrast(1.04);
+  transition: filter .5s var(--ease), transform .5s var(--ease);
+}
+.game:hover .game__media img { filter: saturate(1.05) contrast(1); transform: scale(1.012); }
+
+.game__title {
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  margin-bottom: 1.25rem;
+}
+
+.game__links { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.5rem; }
+
+.meta {
+  display: grid; gap: .1rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+.meta > div {
+  display: grid; grid-template-columns: 8rem 1fr;
+  gap: 1rem; padding: .7rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.meta dt {
+  font: 500 .7rem/1.6 var(--mono);
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--bone-mute);
+}
+.meta dd { margin: 0; font-size: .92rem; }
+
+@media (max-width: 820px) {
+  .game { grid-template-columns: 1fr; }
+  .game--flip .game__media { order: 0; }
+  .meta > div { grid-template-columns: 1fr; gap: .15rem; }
+}
+
+/* ══════════════ studio ══════════════ */
+
+.studio {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+.caps { list-style: none; padding: 0; display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.caps li { background: var(--void-2); padding: 1.4rem; }
+.caps h3 { font-size: 1.5rem; margin-bottom: .6rem; }
+
+@media (max-width: 820px) { .studio { grid-template-columns: 1fr; } }
+
+/* ══════════════ contact ══════════════ */
+
+.section--contact { border-bottom: 1px solid var(--line); }
+.contact { max-width: 60ch; }
+.contact__title { font-size: clamp(2.25rem, 6vw, 4.25rem); margin-bottom: 2rem; }
+
+.contact__links {
+  list-style: none; padding: 0; margin-top: 2rem;
+  display: grid; gap: 1px; background: var(--line);
+  border: 1px solid var(--line);
+}
+.contact__links a {
+  display: block; padding: 1.1rem 1.4rem;
+  background: var(--void-2);
+  font: 500 .8rem/1 var(--mono);
+  letter-spacing: .1em; text-transform: uppercase;
+  text-decoration: none;
+  transition: background .25s var(--ease), color .25s var(--ease), padding-left .25s var(--ease);
+}
+.contact__links a:not(.is-disabled):hover {
+  background: var(--void-3); color: var(--amber); padding-left: 1.9rem;
+}
+/* pending rows read as an unlit amber tick rather than a broken link */
+.contact__links a.is-disabled {
+  color: var(--bone-mute);
+  box-shadow: inset 3px 0 0 rgba(242, 167, 59, .4);
+}
+
+/* ══════════════ placeholder slots ══════════════
+   These are meant to be OBVIOUS. Every one is a thing the client must
+   supply or confirm. They are styled, but deliberately unfinished-looking
+   so nobody ships them by accident. Grep the repo for "TODO" / "CONFIRM".
+   ══════════════════════════════════════════════════ */
+
+.slot {
+  position: relative;
+  border: 1px dashed rgba(242, 167, 59, .45);
+  border-radius: 3px;
+  background: rgba(242, 167, 59, .045);
+  padding: 1.5rem 1.1rem 1.1rem;
+  margin: 1rem 0;
+}
+.slot p { font-size: .87rem; color: var(--bone-dim); line-height: 1.6; }
+.slot code {
+  font: 400 .82em/1 var(--mono);
+  background: rgba(244, 241, 234, .07);
+  padding: .15em .4em; border-radius: 2px;
+  color: var(--bone);
+}
+.slot__chip {
+  position: absolute; top: 0; left: .9rem;
+  transform: translateY(-50%);
+  background: var(--amber); color: var(--void);
+  font: 500 .62rem/1 var(--mono);
+  letter-spacing: .12em; text-transform: uppercase;
+  padding: .32em .6em; border-radius: 2px;
+  white-space: nowrap;
+}
+.slot--tight { padding: 1.2rem .8rem .8rem; margin: .6rem 0 0; }
+.slot--tight p { font-size: .8rem; }
+.slot--inline { margin: 1.5rem 0; }
+
+/* media-shaped slot keeps the 16:9 hole the real art will fill */
+.slot--media {
+  aspect-ratio: 16 / 9;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  margin: 0;
+}
+.slot--media p { max-width: 34ch; }
+.slot--media .slot__chip { top: .9rem; left: 50%; transform: translateX(-50%); }
+
+/* CONFIRM slots are red — these are claims I inferred, not facts you gave me */
+.slot--warn { border-color: rgba(255, 95, 86, .5); background: rgba(255, 95, 86, .05); }
+.slot__chip--warn { background: var(--warn); color: var(--void); }
+
+.is-todo { color: var(--amber); font-family: var(--mono); font-size: .8rem; letter-spacing: .05em; }
+
+/* ══════════════ footer ══════════════ */
+
+.foot {
+  max-width: var(--max); margin-inline: auto;
+  padding: 3rem var(--gut) 4rem;
+  display: grid; gap: .5rem; justify-items: center; text-align: center;
+}
+.foot img { width: 54px; height: 54px; opacity: .3; margin-bottom: .75rem; }
+.foot p { font: 400 .75rem/1.6 var(--mono); color: var(--bone-mute); letter-spacing: .06em; }
+.foot__note { opacity: .6; }
+
+/* ══════════════ reveal on scroll ══════════════ */
+
+[data-reveal] { opacity: 0; transform: translateY(18px); }
+[data-reveal].is-in {
+  opacity: 1; transform: none;
+  transition: opacity .8s var(--ease), transform .8s var(--ease);
+  transition-delay: var(--d, 0ms);
+}
+
+/* ══════════════ reduced motion ══════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  [data-reveal] { opacity: 1; transform: none; }
+  .lumen { display: none; }
+  .grain { animation: none; }
+}
