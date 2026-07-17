@@ -1,23 +1,18 @@
-/* ══════════════════════════════════════════════════════════
-   Lumination Studios VR
-
-   Deliberately almost nothing. Nothing follows the cursor, no
+/* Deliberately almost nothing. Nothing follows the cursor, no
    scroll observers, no reveal system. The hero's fade is pure
    CSS. See the motion policy at the top of style.css before
-   adding to this file.
-   ══════════════════════════════════════════════════════════ */
+   adding to this file. */
 
 (() => {
   "use strict";
 
-  /* ── current year ── */
+  /* current year */
   document.querySelectorAll("[data-year]").forEach(el => {
     el.textContent = String(new Date().getFullYear());
   });
 
-  /* ── dev guard ──
-     Shout while placeholders remain, so this never ships
-     half-written by accident. */
+  /* dev guard — shout while placeholders remain, so this never
+     ships half-written by accident. */
   const todos = document.querySelectorAll(".slot").length;
   if (todos) {
     console.warn(

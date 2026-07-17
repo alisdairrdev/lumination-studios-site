@@ -1,14 +1,8 @@
-/* ══════════════════════════════════════════════════════════════
-   LUMINATION STUDIOS VR
-   Near-black, amber lumination, film grain. That's the whole kit.
+/* Near-black, amber lumination, film grain. That's the whole kit.
 
-   MOTION POLICY — read before adding anything.
-   Motion happens once: the hero fades up on load. There are no
-   scroll reveals, nothing follows the cursor, and nothing loops
-   in the viewport. Fading every block up on scroll is the loudest
-   tell of a machine-built page. If you're tempted to animate a
-   section in, don't.
-   ══════════════════════════════════════════════════════════════ */
+   Motion policy: the hero fades up once on load. No scroll reveals,
+   nothing follows the cursor, nothing loops. Don't animate a section
+   in on scroll — it's the fastest way to make a page feel machine-made. */
 
 :root {
   color-scheme: dark;
@@ -36,7 +30,7 @@
   --ease: cubic-bezier(.2, .7, .3, 1);
 }
 
-/* ── reset ── */
+/* reset */
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
 html { -webkit-text-size-adjust: 100%; }
@@ -70,7 +64,7 @@ body {
 
 :focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 2px; }
 
-/* ── grain: the only thing still moving ── */
+/* grain: the only thing still moving */
 .grain {
   position: fixed; inset: -50%; z-index: 1; pointer-events: none;
   opacity: .03;
@@ -87,11 +81,9 @@ body {
 
 main, .nav, .foot { position: relative; z-index: 2; }
 
-/* ── type ── */
+/* type */
 h1, h2 { font-family: var(--display); font-weight: 400; line-height: 1; letter-spacing: -.015em; text-wrap: balance; }
 h1 em, h2 em { font-style: italic; color: var(--amber); }
-
-/* ══════════════ nav ══════════════ */
 
 .nav {
   display: flex; align-items: center; justify-content: space-between;
@@ -116,8 +108,6 @@ h1 em, h2 em { font-style: italic; color: var(--amber); }
 .nav__links a:hover { color: var(--bone); }
 
 @media (max-width: 640px) { .nav__links { gap: 1.1rem; } }
-
-/* ══════════════ hero ══════════════ */
 
 .hero {
   max-width: var(--max);
@@ -178,12 +168,10 @@ h1 em, h2 em { font-style: italic; color: var(--amber); }
   .hero__logo { width: min(100%, 260px); }
 }
 
-/* ── the hero fades up, once, on load ── */
+/* the hero fades up, once, on load */
 @keyframes rise { from { opacity: 0; } to { opacity: 1; } }
 .js .hero__mark { animation: rise 1.4s var(--ease) both; }
 .js .hero__copy { animation: rise 1.2s var(--ease) .2s both; }
-
-/* ══════════════ buttons ══════════════ */
 
 .btn {
   display: inline-flex; align-items: center;
@@ -210,8 +198,6 @@ h1 em, h2 em { font-style: italic; color: var(--amber); }
 .is-disabled { opacity: .4; cursor: not-allowed; pointer-events: none; text-decoration: none; }
 .btn.is-disabled { border-style: dashed; }
 
-/* ══════════════ sections ══════════════ */
-
 .section {
   max-width: var(--max);
   margin-inline: auto;
@@ -219,8 +205,6 @@ h1 em, h2 em { font-style: italic; color: var(--amber); }
   border-top: 1px solid var(--line);
 }
 .section__title { font-size: clamp(2rem, 4.5vw, 3.25rem); margin-bottom: 2.5rem; }
-
-/* ══════════════ fever dream ══════════════ */
 
 .feature {
   max-width: var(--max);
@@ -250,8 +234,6 @@ h1 em, h2 em { font-style: italic; color: var(--amber); }
   .meta > div { grid-template-columns: 1fr; gap: .15rem; }
 }
 
-/* ══════════════ contact ══════════════ */
-
 .contact__links {
   list-style: none; padding: 0;
   display: grid; gap: 1px;
@@ -274,11 +256,9 @@ h1 em, h2 em { font-style: italic; color: var(--amber); }
 }
 .contact__links a.is-disabled { color: var(--bone-mute); }
 
-/* ══════════════ placeholder slots ══════════════
-   Deliberately obvious, deliberately terse. The page shows WHERE
-   content is missing; PLACEHOLDERS.md explains WHAT goes there.
-   Don't put instructions back on the page.
-   ══════════════════════════════════════════════ */
+/* placeholder slots — deliberately obvious, deliberately terse.
+   The page shows WHERE content is missing; PLACEHOLDERS.md explains
+   WHAT goes there. Don't put instructions back on the page. */
 
 .slot {
   position: relative;
@@ -301,16 +281,12 @@ h1 em, h2 em { font-style: italic; color: var(--amber); }
 
 .is-todo { color: var(--amber); font-family: var(--mono); font-size: .78rem; letter-spacing: .04em; }
 
-/* ══════════════ footer ══════════════ */
-
 .foot {
   max-width: var(--max); margin-inline: auto;
   padding: 3rem var(--gut) 3.5rem;
   border-top: 1px solid var(--line);
 }
 .foot p { font: 400 .72rem/1.6 var(--mono); color: var(--bone-mute); letter-spacing: .04em; }
-
-/* ══════════════ reduced motion ══════════════ */
 
 @media (prefers-reduced-motion: reduce) {
   html:focus-within { scroll-behavior: auto; }
