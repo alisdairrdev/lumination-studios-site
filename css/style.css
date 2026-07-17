@@ -11,6 +11,8 @@
    ══════════════════════════════════════════════════════════════ */
 
 :root {
+  color-scheme: dark;
+
   --void:      #08080b;
   --void-2:    #0d0d12;
   --void-3:    #14141b;
@@ -86,7 +88,7 @@ body {
 main, .nav, .foot { position: relative; z-index: 2; }
 
 /* ── type ── */
-h1, h2 { font-family: var(--display); font-weight: 400; line-height: 1; letter-spacing: -.015em; }
+h1, h2 { font-family: var(--display); font-weight: 400; line-height: 1; letter-spacing: -.015em; text-wrap: balance; }
 h1 em, h2 em { font-style: italic; color: var(--amber); }
 
 /* ══════════════ nav ══════════════ */
@@ -103,9 +105,13 @@ h1 em, h2 em { font-style: italic; color: var(--amber); }
 
 .nav__links { display: flex; gap: 1.75rem; list-style: none; padding: 0; }
 .nav__links a {
+  display: inline-flex; align-items: center;
+  min-height: 44px;
   font: 400 .98rem/1 var(--display);
   color: var(--bone-mute); text-decoration: none;
   transition: color .3s var(--ease);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 .nav__links a:hover { color: var(--bone); }
 
@@ -181,12 +187,15 @@ h1 em, h2 em { font-style: italic; color: var(--amber); }
 
 .btn {
   display: inline-flex; align-items: center;
+  min-height: 44px;
   padding: .8rem 1.4rem;
   border: 1px solid var(--line-2);
   border-radius: 2px;
   font: 500 .78rem/1 var(--mono);
   letter-spacing: .06em;
   text-decoration: none; color: var(--bone);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
   /* no translateY lift on hover — these light up instead */
   transition: background .3s var(--ease), border-color .3s var(--ease), color .3s var(--ease);
 }
@@ -256,6 +265,8 @@ h1 em, h2 em { font-style: italic; color: var(--amber); }
   font: 500 .78rem/1 var(--mono);
   letter-spacing: .06em;
   text-decoration: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
   transition: background .3s var(--ease), color .3s var(--ease), padding-left .3s var(--ease);
 }
 .contact__links a:not(.is-disabled):hover {

@@ -51,7 +51,7 @@
     <div class="hero__mark">
       <img class="hero__logo" src="assets/logo-lumination.png"
            alt="Lumination Studios VR logo: an infinity symbol formed of two eyes."
-           width="644" height="644" />
+           width="644" height="644" fetchpriority="high" />
     </div>
 
     <div class="hero__copy">
@@ -83,9 +83,10 @@
       </dl>
 
       <div class="feature__links">
-        <!-- TODO(LINKS): real URLs. Inert until then. -->
-        <a class="btn btn--primary is-disabled" aria-disabled="true" href="#">Store page</a>
-        <a class="btn is-disabled" aria-disabled="true" href="#">Trailer</a>
+        <!-- TODO(LINKS): real URLs. Inert until then. tabindex="-1" so a
+             keyboard user can't tab onto a link that pointer-events can't stop. -->
+        <a class="btn btn--primary is-disabled" aria-disabled="true" href="#" tabindex="-1">Store page</a>
+        <a class="btn is-disabled" aria-disabled="true" href="#" tabindex="-1">Trailer</a>
       </div>
     </div>
   </section>
@@ -98,13 +99,13 @@
 
   <!-- ═══════════ CONTACT ═══════════ -->
   <section class="section" id="contact">
-    <h2 class="section__title">Let's build something<br />that <em>lingers</em>.</h2>
+    <h2 class="section__title">Let&rsquo;s build something<br />that <em>lingers</em>.</h2>
 
     <ul class="contact__links">
-      <li><a class="is-disabled" aria-disabled="true" href="#">Email</a></li>
-      <li><a class="is-disabled" aria-disabled="true" href="#">Discord</a></li>
-      <li><a class="is-disabled" aria-disabled="true" href="#">X</a></li>
-      <li><a class="is-disabled" aria-disabled="true" href="#">YouTube</a></li>
+      <li><a class="is-disabled" aria-disabled="true" href="#" tabindex="-1">Email</a></li>
+      <li><a class="is-disabled" aria-disabled="true" href="#" tabindex="-1">Discord</a></li>
+      <li><a class="is-disabled" aria-disabled="true" href="#" tabindex="-1">X</a></li>
+      <li><a class="is-disabled" aria-disabled="true" href="#" tabindex="-1">YouTube</a></li>
     </ul>
   </section>
 
