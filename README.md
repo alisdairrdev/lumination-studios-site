@@ -31,10 +31,10 @@ python -m http.server 8080
 
 | | |
 |---|---|
-| Base | `#08080b` near-black, one soft amber bloom behind the mark |
-| Accent | `#f2a73b` amber, used sparingly |
-| Display | Instrument Serif (italic for emphasis) |
-| Body | Archivo |
+| Base | `#06090d` cold near-black, one soft frost bloom behind the mark |
+| Accent | `#57d3ff` frost blue, used sparingly |
+| Display | Unbounded (bold, for emphasis) |
+| Body | Hanken Grotesk |
 | Labels | JetBrains Mono |
 
 The logo is white-on-transparent, so the site is dark by necessity as much as by choice.
