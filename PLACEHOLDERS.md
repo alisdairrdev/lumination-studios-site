@@ -10,15 +10,13 @@ Find them: `grep -rn "TODO" index.html`
 
 ### Fever Dream — `#work`
 
-Key art and the store page link are in. Still open:
+Done: key art, the one-line genre/inspiration description, the store page link.
+Platform/Status/Players was dropped rather than filled in — a `dl.meta` list of
+three unknowns wasn't pulling its weight next to one real sentence. There's no
+trailer, so that button is gone too, not just disabled.
 
-| Slot | What it needs |
-|---|---|
-| description | 2–4 sentences on what Fever Dream is, what you do, the hook. Only game on the site, so this carries it. There's no on-page dashed box for this one anymore — it was pulled off the page rather than left as clutter, so it lives here until it's written. |
-| Platform | Quest / PCVR / Steam? |
-| Status | Released / early access / in development? |
-| Players | Single / co-op / multiplayer? |
-| Trailer | Real URL. Drop `class="is-disabled"`, `aria-disabled`, and `tabindex="-1"` once it exists. |
+If a trailer shows up later, it's a normal `<a class="btn" href="…" target="_blank"
+rel="noopener">Trailer</a>` back in `.feature__links` — no special handling needed.
 
 ### Studio — `#studio`
 
