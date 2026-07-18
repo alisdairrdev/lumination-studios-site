@@ -6,11 +6,6 @@
 (() => {
   "use strict";
 
-  /* current year */
-  document.querySelectorAll("[data-year]").forEach(el => {
-    el.textContent = String(new Date().getFullYear());
-  });
-
   /* dev guard — shout while placeholders remain, so this never
      ships half-written by accident. */
   const todos = document.querySelectorAll(".slot").length;
