@@ -206,6 +206,9 @@ h1 em, h2 em { font-style: italic; color: var(--amber); }
 }
 .section__title { font-size: clamp(2rem, 4.5vw, 3.25rem); margin-bottom: 2.5rem; }
 
+.studio__text { display: grid; gap: 1.25rem; max-width: 42rem; }
+.studio__text p { font-size: clamp(1rem, 1.2vw, 1.1rem); line-height: 1.75; color: var(--bone-dim); }
+
 .feature {
   max-width: var(--max);
   margin-inline: auto;

@@ -20,9 +20,10 @@ rel="noopener">Trailer</a>` back in `.feature__links` — no special handling ne
 
 ### Studio — `#studio`
 
-| Slot | What it needs |
-|---|---|
-| `TODO — studio story` | Founded when and by whom, based where, team size, what you care about. 1–2 short paragraphs. Publishers read this closely. |
+Done: the two-paragraph "who we are." It's deliberately vague on specifics —
+no founding date, no team headcount, no named members — since none of that
+was given and the whole point of this file is not inventing it. If you want
+those specifics on the page later, they'll need to come from you.
 
 ### Contact — `#contact`
 
