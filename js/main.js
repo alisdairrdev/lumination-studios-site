@@ -6,7 +6,7 @@
 (() => {
   "use strict";
 
-  /* dev guard — shout while placeholders remain, so this never
+  /* dev guard: shout while placeholders remain, so this never
      ships half-written by accident. */
   const todos = document.querySelectorAll(".slot").length;
   if (todos) {

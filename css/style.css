@@ -2,7 +2,7 @@
 
    Motion policy: the hero fades up once on load. No scroll reveals,
    nothing follows the cursor, nothing loops. Don't animate a section
-   in on scroll — it's the fastest way to make a page feel machine-made. */
+   in on scroll. It's the fastest way to make a page feel machine-made. */
 
 :root {
   color-scheme: dark;
@@ -184,7 +184,7 @@ h1 em, h2 em { font-style: italic; color: var(--amber); }
   text-decoration: none; color: var(--bone);
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
-  /* no translateY lift on hover — these light up instead */
+  /* no translateY lift on hover; these light up instead */
   transition: background .3s var(--ease), border-color .3s var(--ease), color .3s var(--ease);
 }
 .btn:hover { border-color: var(--amber); color: var(--amber); }
@@ -192,7 +192,7 @@ h1 em, h2 em { font-style: italic; color: var(--amber); }
 .btn--primary { background: var(--amber); color: var(--void); border-color: var(--amber); }
 .btn--primary:hover { background: var(--amber-hot); border-color: var(--amber-hot); color: var(--void); }
 
-/* NOTE: don't put `border-style` on .is-disabled — on elements with no
+/* NOTE: don't put `border-style` on .is-disabled; on elements with no
    border declared it resolves against the default `medium` width and
    paints a 3px currentColor border out of nowhere. */
 .is-disabled { opacity: .4; cursor: not-allowed; pointer-events: none; text-decoration: none; }
@@ -250,7 +250,7 @@ h1 em, h2 em { font-style: italic; color: var(--amber); }
 }
 .contact__links a.is-disabled { color: var(--bone-mute); }
 
-/* placeholder slots — deliberately obvious, deliberately terse.
+/* placeholder slots: deliberately obvious, deliberately terse.
    The page shows WHERE content is missing; PLACEHOLDERS.md explains
    WHAT goes there. Don't put instructions back on the page. */
 

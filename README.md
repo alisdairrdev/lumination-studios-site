@@ -1,17 +1,17 @@
-# Lumination Studios VR — website
+# Lumination Studios VR website
 
 Static site. No build step, no dependencies, no framework. Open `index.html` and it runs.
 
 ## Status
 
-⚠️ **Not ready to publish.** Fever Dream's content is placeholders — see
+⚠️ **Not ready to publish.** Fever Dream's content is placeholders. See
 [`PLACEHOLDERS.md`](PLACEHOLDERS.md). Nothing about the studio was invented; every unknown
 is a visible dashed box on the page.
 
 ## Structure
 
 ```
-index.html      # the whole site — one page
+index.html      # the whole site, one page
 css/style.css   # all styling
 js/main.js      # year stamp + a console warning about placeholders. That's it.
 assets/         # logo
@@ -32,7 +32,7 @@ python -m http.server 8080
 | | |
 |---|---|
 | Base | `#08080b` near-black, one soft amber bloom behind the mark |
-| Accent | `#f2a73b` amber — used sparingly |
+| Accent | `#f2a73b` amber, used sparingly |
 | Display | Instrument Serif (italic for emphasis) |
 | Body | Archivo |
 | Labels | JetBrains Mono |
@@ -54,18 +54,18 @@ If you're tempted to animate a section in on scroll: don't.
 ## Accessibility
 
 - Skip link, visible focus rings, semantic landmarks.
-- `prefers-reduced-motion` honoured — the fade and the grain stop.
+- `prefers-reduced-motion` honoured: the fade and the grain stop.
 - Links without destinations are `aria-disabled` and unclickable rather than fake `href="#"`
   traps.
 - Body text meets WCAG AA on the void background.
 
 ## Deploying to GitHub Pages
 
-**This repo is private, and Pages doesn't serve private repos on the free plan** — so the
+**This repo is private, and Pages doesn't serve private repos on the free plan**, so the
 site isn't live. Options:
 
-1. Keep it private and preview locally — where things stand now.
-2. Upgrade to GitHub Pro — Pages then publishes from a private repo.
+1. Keep it private and preview locally, where things stand now.
+2. Upgrade to GitHub Pro. Pages then publishes from a private repo.
 3. Make the repo public at launch (source becomes visible).
 
 When Pages is available: `Settings → Pages → Source: main / (root)`. A `.nojekyll` file is
